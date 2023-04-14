@@ -5,8 +5,8 @@ services:
       - project-mentoring-db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - envs/dev/.env.db
 
   app:
     build: .
@@ -17,8 +17,9 @@ services:
       - "8000:8000"
     environment:
       - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - envs/dev/.env.db
+      - envs/dev/.env.be
     depends_on:
       - db
 
