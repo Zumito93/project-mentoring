@@ -1,3 +1,4 @@
+import json
 from rest_framework import status
 from rest_framework.test import APITestCase
 from django.urls import reverse
@@ -91,3 +92,35 @@ class MentoringGetAPITestCase(APITestCase):
         serializer = MentorshipSerializer(mentorship)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class MentoringPostAPITestCase(APITestCase):
+    """Test Mentoring API POST requests"""
+
+    def setUp(self):
+        self.valid_mentor_payload = {
+            'email': 'professor_xavier@mail.com',
+            'name': 'Professor X',
+            'gender': 'M'
+        }
+        self.invalid_mentor_payload = {
+            'email': 'professor_xavier%mail.com',
+            'name': 'Professor X',
+            'gender': '1'
+        }
+
+    def test_create_valid_mentor(self):
+        response = self.client.post(
+            reverse('MentorListView'),
+            data=json.dumps(self.valid_mentor_payload),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_create_invalid_mentor(self):
+        response = self.client.post(
+            reverse('MentorListView'),
+            data=json.dumps(self.invalid_mentor_payload),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
