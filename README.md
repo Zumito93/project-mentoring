@@ -41,6 +41,12 @@ Start the service:
 docker compose up
 ```
 
+In order to browse the API a Django user is needed. Within the container execute:
+
+```bash
+python3 manage.py createsuperuser
+```
+
 ## Tests
 
 Run tests:
