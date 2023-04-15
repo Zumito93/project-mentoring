@@ -26,3 +26,9 @@ class ProjectSerializer(ModelSerializer):
     def get_mentors(self, obj):
         mentors = self.__get_project_obj(obj).get_mentors()
         return MentorSerializer(mentors, many=True).data
+    
+class MentorshipSerializer(ModelSerializer):
+    """A serializer for the Mentorship model"""
+    class Meta:
+        model = Mentorship
+        fields = '__all__'

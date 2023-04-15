@@ -9,4 +9,7 @@ urlpatterns = [
     # Project model views
     path('project', views.ProjectListView.as_view()),
     path('project/<int:pk>/', views.ProjectDetailView.as_view()),
+    # Mentorship model views
+    path('mentorship', views.MentorshipListView.as_view()),
+    path('mentorship/<int:pk>/', views.MentorshipDetailView.as_view()),
 ]
