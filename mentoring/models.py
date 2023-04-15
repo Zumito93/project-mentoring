@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class Mentor(models.Model):
@@ -12,6 +13,13 @@ class Mentor(models.Model):
 class Project(models.Model):
     """A model that represents a project"""
     name = models.CharField(max_length=128)
+
+    def get_mentors(self) -> list[Mentor]:
+        project_mentorships = Mentorship.objects.filter(project=self)
+        mentors = []
+        for mentorship in project_mentorships:
+            mentors.append(mentorship.mentor)
+        return mentors
 
 
 class Mentorship(models.Model):
