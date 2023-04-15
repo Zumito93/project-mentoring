@@ -40,3 +40,11 @@ Start the service:
 ```bash
 docker compose up
 ```
+
+## Tests
+
+Run tests:
+
+```bash
+python3 manage.py test mentoring/tests
+```
