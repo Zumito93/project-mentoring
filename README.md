@@ -17,7 +17,7 @@ Set proper environment variable values for DB connection in '.env.db'
 
 ### BE
 
-Set proper environment variable values for BE behavior in '.be.db'
+Set proper environment variable values for BE behavior in '.env.be'
 
 | Env Variable             | Description                          |
 |--------------------------|--------------------------------------|
@@ -35,25 +35,33 @@ Create docker volume for DB:
 docker volume create --name project-mentoring-db
 ```
 
+Set DB:
+
+```bash
+docker compose run app python3 manage.py migrate
+```
+
 Start the service:
 
 ```bash
 docker compose up
 ```
 
-In order to browse the API a Django user is needed. Within the container execute:
+In order to browse the API a Django user is needed, in new terminal execute:
 
 ```bash
+docker exec -it project-mentoring-app-1 bash
 python3 manage.py createsuperuser
+exit
 ```
 
 Access the API Swagger UI at [localhost:8000/api/schema/swagger-ui/](http://localhost:8000/api/schema/swagger-ui/) or Redoc [localhost:8000/api/schema/redoc/](http://localhost:8000/api/schema/redoc/)
 
 The API schema can be retrieved from [localhost:8000/api/schema](http://localhost:8000/api/schema)
 
-## Tests
+## Dev Tests
 
-Run tests:
+In order to run development tests, disable authentication and pagination in [project settings](projectmentoring/settings.py) and run:
 
 ```bash
 python3 manage.py test mentoring/tests
