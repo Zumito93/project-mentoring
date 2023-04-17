@@ -61,7 +61,7 @@ The API schema can be retrieved from [localhost:8000/api/schema](http://localhos
 
 ## Dev Tests
 
-In order to run development tests, disable authentication and pagination in [project settings](projectmentoring/settings.py) and run:
+In order to run development tests, disable pagination in [project settings](projectmentoring/settings.py) and run:
 
 ```bash
 python3 manage.py test mentoring/tests

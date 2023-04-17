@@ -137,10 +137,10 @@ API_TITLE = 'Mentoring Administration API'
 API_VERSION = '1.0.0'
 
 REST_FRAMEWORK = {
-    # Comment this block for development tests
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    # Comment pagination for tests
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
     #
