@@ -17,7 +17,7 @@ Set proper environment variable values for DB connection in '.env.db'
 
 ### BE
 
-Set proper environment variable values for BE behavior in '.be.db'
+Set proper environment variable values for BE behavior in '.env.be'
 
 | Env Variable             | Description                          |
 |--------------------------|--------------------------------------|
@@ -51,9 +51,9 @@ Access the API Swagger UI at [localhost:8000/api/schema/swagger-ui/](http://loca
 
 The API schema can be retrieved from [localhost:8000/api/schema](http://localhost:8000/api/schema)
 
-## Tests
+## Dev Tests
 
-Run tests:
+In order to run development tests, disable authentication and pagination in [project settings](projectmentoring/settings.py) and run:
 
 ```bash
 python3 manage.py test mentoring/tests
