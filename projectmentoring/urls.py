@@ -28,3 +28,11 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns.append(path('admin/', admin.site.urls))
     urlpatterns.append(path('api-auth/', include('rest_framework.urls')))
+    # drf spectacular
+    from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+    urlpatterns.append(path('api/schema/', SpectacularAPIView.as_view(), name='schema'))
+    urlpatterns.append(path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'))
+    urlpatterns.append(path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'))
+    # Redirect api root to Swagger UI
+    from django.views.generic import RedirectView
+    urlpatterns.append(path('', RedirectView.as_view(url='api/schema/swagger-ui/', permanent=False), name='api-root'))
