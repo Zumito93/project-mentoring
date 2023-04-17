@@ -35,16 +35,24 @@ Create docker volume for DB:
 docker volume create --name project-mentoring-db
 ```
 
+Set DB:
+
+```bash
+docker compose run app python3 manage.py migrate
+```
+
 Start the service:
 
 ```bash
 docker compose up
 ```
 
-In order to browse the API a Django user is needed. Within the container execute:
+In order to browse the API a Django user is needed, in new terminal execute:
 
 ```bash
+docker exec -it project-mentoring-app-1 bash
 python3 manage.py createsuperuser
+exit
 ```
 
 Access the API Swagger UI at [localhost:8000/api/schema/swagger-ui/](http://localhost:8000/api/schema/swagger-ui/) or Redoc [localhost:8000/api/schema/redoc/](http://localhost:8000/api/schema/redoc/)
