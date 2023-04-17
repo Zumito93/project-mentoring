@@ -23,7 +23,7 @@ class ProjectSerializer(ModelSerializer):
         elif type(obj) is Project:
             return obj
 
-    def get_mentors(self, obj):
+    def get_mentors(self, obj) -> MentorSerializer(many=True):
         mentors = self.__get_project_obj(obj).get_mentors()
         return MentorSerializer(mentors, many=True).data
     
