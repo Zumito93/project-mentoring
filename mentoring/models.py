@@ -9,6 +9,9 @@ class Mentor(models.Model):
     from mentoring.utils import Gender
     gender = models.CharField(max_length=8, choices=Gender.choices)
 
+    class Meta:
+        ordering = ["-id"]
+
 
 class Project(models.Model):
     """A model that represents a project"""
@@ -20,6 +23,9 @@ class Project(models.Model):
         for mentorship in project_mentorships:
             mentors.append(mentorship.mentor)
         return mentors
+    
+    class Meta:
+        ordering = ["-id"]
 
 
 class Mentorship(models.Model):
@@ -28,3 +34,6 @@ class Mentorship(models.Model):
     project: Project = models.ForeignKey(Project, on_delete=models.PROTECT)
     from mentoring.utils import PROJECT_STATUS_CHOICES
     status = models.BooleanField(default=True, choices=PROJECT_STATUS_CHOICES)
+
+    class Meta:
+        ordering = ["-id"]
