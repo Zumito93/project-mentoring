@@ -47,6 +47,10 @@ In order to browse the API a Django user is needed. Within the container execute
 python3 manage.py createsuperuser
 ```
 
+Access the API Swagger UI at [localhost:8000/api/schema/swagger-ui/](http://localhost:8000/api/schema/swagger-ui/) or Redoc [localhost:8000/api/schema/redoc/](http://localhost:8000/api/schema/redoc/)
+
+The API schema can be retrieved from [localhost:8000/api/schema](http://localhost:8000/api/schema)
+
 ## Tests
 
 Run tests:
