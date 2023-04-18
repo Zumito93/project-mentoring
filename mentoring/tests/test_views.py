@@ -45,7 +45,7 @@ class MentoringGetAPITestCase(APITestCase):
         Mentorship.objects.create(mentor=self.mentor_mx, project=self.project_d)
 
     # Test get list requests
-    # TODO: paginate objects or return data not paginated from view
+    # TODO: Create tests for paginated views
     def test_get_mentor_list(self):
         # get API response
         request = self.factory.get(reverse('MentorListView'))
@@ -129,6 +129,7 @@ class MentoringPostAPITestCase(APITestCase):
         }
 
     def test_create_valid_mentor(self):
+        # get API response
         request = self.factory.post(
             reverse('MentorListView'),
             data=json.dumps(self.valid_mentor_payload),
@@ -139,6 +140,7 @@ class MentoringPostAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_mentor(self):
+        # get API response
         request = self.factory.post(
             reverse('MentorListView'),
             data=json.dumps(self.invalid_mentor_payload),
