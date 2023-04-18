@@ -137,12 +137,12 @@ API_TITLE = 'Mentoring Administration API'
 API_VERSION = '1.0.0'
 
 REST_FRAMEWORK = {
-    # Comment this block for development tests
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
+    # TODO: Create tests for paginated views
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 5,
     #
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
     'DEFAULT_VERSION' : '1.0.0',
