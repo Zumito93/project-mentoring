@@ -1,0 +1,13 @@
+#docs
+README.md
+
+#git
+.git
+.gitignore
+
+#docker
+Dockerfile
+docker*
+
+#env vars
+envs
