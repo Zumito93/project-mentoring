@@ -1,0 +1,54 @@
+name: Django tests
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  django-test:
+    runs-on: ubuntu-22.04
+    env:
+      DEBUG: "0"
+      DJANGO_ALLOWED_HOSTS: "localhost"
+      DJANGO_SECRET_KEY: 'django-insecure-@*tg8qxnvl5$2t^ks@(x4e*9nrt7o#29d!4vi%_uco%4esa1*6'
+      DATABASE_NAME: django_test_db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: localhost
+      DATABASE_PORT: 5432
+    services:
+      postgres_main:
+        image: postgres:15.2
+        env:
+          POSTGRES_USER: ${{ env.DATABASE_USERNAME }}
+          POSTGRES_PASSWORD: ${{ env.DATABASE_PASSWORD }}
+          POSTGRES_DB: ${{ env.DATABASE_NAME }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+      - name: Run Migrations
+        run: python3 manage.py migrate
+      - name: Run Tests
+        run: |
+          python3 manage.py test mentoring/tests

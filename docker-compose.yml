@@ -3,8 +3,6 @@ services:
     image: postgres:15.2
     volumes:
       - project-mentoring-db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
     env_file:
       - envs/dev/.env.db
 
@@ -15,10 +13,7 @@ services:
       - .:/project-mentoring
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=postgres
     env_file:
-      - envs/dev/.env.db
       - envs/dev/.env.be
     depends_on:
       - db

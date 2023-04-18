@@ -8,12 +8,7 @@ Configure each environment under /envs directory
 
 ### DB
 
-Set proper environment variable values for DB connection in '.env.db'
-
-| Env Variable             | Description                          |
-|--------------------------|--------------------------------------|
-| POSTGRES_USER            | PostgreSQL default user              |
-| POSTGRES_PASSWORD        | PostgreSQL default user's password   |
+Set proper environment variable values for DB connection in '.env.db' and '.env.be'
 
 ### BE
 
